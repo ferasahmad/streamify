@@ -1,4 +1,4 @@
-export const recentStreams = [
+const recentStreams = [
   {
     songName: "Doin' Time",
     artist: "Lana Del Rey",
@@ -63,3 +63,5 @@ export const recentStreams = [
     artistImage: "/images/artists/the-weeknd.jpg",
   },
 ];
+
+export default recentStreams;

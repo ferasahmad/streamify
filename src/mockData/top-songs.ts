@@ -35,3 +35,5 @@ export const topSongs = [
     artistImage: "/images/artists/lana-del-rey.jpg",
   },
 ];
+
+export default topSongs;

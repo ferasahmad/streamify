@@ -12,3 +12,5 @@ export const revenueSources = [
     amount: 10000,
   },
 ];
+
+export default revenueSources;

@@ -1,4 +1,4 @@
-export const metrics = {
+const metrics = {
   totalUsers: 12000,
   activeUsers: 4300,
   totalStreams: 850000,
@@ -9,3 +9,5 @@ export const metrics = {
   },
   topArtist: "The Weeknd",
 };
+
+export default metrics;
