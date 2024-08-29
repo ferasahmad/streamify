@@ -1,39 +1,43 @@
 "use client";
-import { useEffect } from "react";
 
-import {
-  fetchMetrics,
-  fetchRecentStreams,
-  fetchRevenueSources,
-  fetchTopSongs,
-  fetchUserGrowth,
-} from "@/services/apiService";
+import React, { useEffect } from "react";
+import KeyMetrics from "@/components/sections/KeyMetrics";
+import { useDataContext } from "@/context/DataContext";
 
 export default function Home() {
+  const {
+    metrics,
+    recentStreams,
+    revenueSources,
+    topSongs,
+    userGrowth,
+    loading,
+    error,
+  } = useDataContext();
+
   useEffect(() => {
-    const test = async () => {
-      try {
-        const metrics = await fetchMetrics();
-        console.log(metrics);
+    if (!loading && !error) {
+      console.log(recentStreams);
+      console.log(revenueSources);
+      console.log(topSongs);
+      console.log(userGrowth);
+    }
+  }, [
+    loading,
+    error,
+    metrics,
+    recentStreams,
+    revenueSources,
+    topSongs,
+    userGrowth,
+  ]);
 
-        const recentStreams = await fetchRecentStreams();
-        console.log(recentStreams);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-        const revenueSources = await fetchRevenueSources();
-        console.log(revenueSources);
-
-        const topSongs = await fetchTopSongs();
-        console.log(topSongs);
-
-        const userGrowth = await fetchUserGrowth();
-        console.log(userGrowth);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    test();
-  }, []);
-
-  return <main>hellooo</main>;
+  return (
+    <main>
+      <KeyMetrics metrics={metrics} />
+    </main>
+  );
 }
