@@ -6,6 +6,7 @@ import { useDataContext } from "@/context/DataContext";
 import TopArtist from "@/components/sections/TopArtist";
 import RevenueSourcesPieChart from "@/components/sections/RevenueSourcesPieChart";
 import TopSongsBarChart from "@/components/sections/TopSongsBarChart";
+import UserGrowthChart from "@/components/sections/UserGrowthChart";
 
 export default function Home() {
   const {
@@ -39,21 +40,28 @@ export default function Home() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-wrap justify-center w-full gap-4">
-      <div className="w-full lg:w-[30%]">
-        <KeyMetrics metrics={metrics} />
+    <div className="flex flex-wrap justify-center w-full gap-8">
+      <div className="flex gap-8 w-full">
+        <div className="lg:flex-1">
+          <KeyMetrics metrics={metrics} />
+        </div>
+        <div className="relative lg:flex-1 overflow-hidden">
+          <TopArtist
+            artistImage={metrics.artistImage}
+            topArtist={metrics.topArtist}
+          />
+        </div>
+        <div className="lg:flex-1">
+          <RevenueSourcesPieChart revenueSources={revenueSources} />
+        </div>
       </div>
-      <div className="relative w-full lg:w-[30%] overflow-hidden">
-        <TopArtist
-          artistImage={metrics.artistImage}
-          topArtist={metrics.topArtist}
-        />
-      </div>
-      <div className="w-full lg:w-[30%]">
-        <RevenueSourcesPieChart revenueSources={revenueSources} />
-      </div>
-      <div className="w-full lg:w-[50%]">
-        <TopSongsBarChart topSongs={topSongs} />
+      <div className="flex gap-8 w-full">
+        <div className="lg:flex-1">
+          <TopSongsBarChart topSongs={topSongs} />
+        </div>
+        <div className="lg:flex-1">
+          <UserGrowthChart userGrowth={userGrowth} />
+        </div>
       </div>
     </div>
   );
