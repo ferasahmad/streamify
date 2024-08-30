@@ -3,6 +3,8 @@
 import React, { useEffect } from "react";
 import KeyMetrics from "@/components/sections/KeyMetrics";
 import { useDataContext } from "@/context/DataContext";
+import TopArtist from "@/components/sections/TopArtist";
+import RevenueSources from "@/components/sections/RevenueSources";
 
 export default function Home() {
   const {
@@ -36,8 +38,19 @@ export default function Home() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <main>
-      <KeyMetrics metrics={metrics} />
-    </main>
+    <div className="flex flex-wrap justify-center w-full gap-4">
+      <div className="w-full lg:w-[30%]">
+        <KeyMetrics metrics={metrics} />
+      </div>
+      <div className="relative w-full lg:w-[30%] overflow-hidden">
+        <TopArtist
+          artistImage={metrics.artistImage}
+          topArtist={metrics.topArtist}
+        />
+      </div>
+      <div className="w-full lg:w-[30%]">
+        <RevenueSources revenueSources={revenueSources} />
+      </div>
+    </div>
   );
 }
