@@ -27,7 +27,6 @@ export type Song = {
   artist: string;
   streamCount: number;
   albumCover: string;
-  artistImage: string;
 };
 
 export type UserGrowth = {
