@@ -22,7 +22,7 @@ interface RevenueSourcesProps {
   revenueSources: RevenueSource[];
 }
 
-export default function RevenueSources({
+export default function RevenueSourcesPieChart({
   revenueSources,
 }: RevenueSourcesProps) {
   const chartConfig: ChartConfig = {

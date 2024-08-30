@@ -4,7 +4,8 @@ import React, { useEffect } from "react";
 import KeyMetrics from "@/components/sections/KeyMetrics";
 import { useDataContext } from "@/context/DataContext";
 import TopArtist from "@/components/sections/TopArtist";
-import RevenueSources from "@/components/sections/RevenueSources";
+import RevenueSourcesPieChart from "@/components/sections/RevenueSourcesPieChart";
+import TopSongsBarChart from "@/components/sections/TopSongsBarChart";
 
 export default function Home() {
   const {
@@ -49,7 +50,10 @@ export default function Home() {
         />
       </div>
       <div className="w-full lg:w-[30%]">
-        <RevenueSources revenueSources={revenueSources} />
+        <RevenueSourcesPieChart revenueSources={revenueSources} />
+      </div>
+      <div className="w-full lg:w-[50%]">
+        <TopSongsBarChart topSongs={topSongs} />
       </div>
     </div>
   );
