@@ -9,8 +9,8 @@ interface KeyMetricProps {
 
 export default function KeyMetric({ value, description }: KeyMetricProps) {
   return (
-    <Card className="flex w-[48%] flex-col items-center justify-center p-4">
-      <CardTitle>{value}</CardTitle>
+    <Card className="flex flex-1 flex-col gap-2 p-4">
+      <CardTitle className="text-3xl">{value}</CardTitle>
       <CardDescription>{description}</CardDescription>
     </Card>
   );
