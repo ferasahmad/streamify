@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import KeyMetric from "../custom/KeyMetric";
-import { Card, CardTitle, CardDescription } from "../ui/card";
 import { Metrics } from "@/types";
 import { formatNumber } from "@/utilities/helpers";
 
@@ -11,8 +10,8 @@ interface KeyMetricsProps {
 
 export default function KeyMetrics({ metrics }: KeyMetricsProps) {
   return (
-    <div className="flex h-full flex-col gap-2">
-      <div className="flex flex-1 gap-2 ">
+    <div className={classes.container}>
+      <div className={classes.row}>
         <KeyMetric
           value={formatNumber(metrics.totalUsers)}
           description="Total registered users on the platform."
@@ -22,7 +21,7 @@ export default function KeyMetrics({ metrics }: KeyMetricsProps) {
           description="Users active this month"
         />
       </div>
-      <div className="flex flex-1 gap-2">
+      <div className={classes.row}>
         <KeyMetric
           value={formatNumber(metrics.totalStreams)}
           description="Total streams on the platform"
@@ -35,3 +34,8 @@ export default function KeyMetrics({ metrics }: KeyMetricsProps) {
     </div>
   );
 }
+
+const classes = {
+  container: "flex h-full flex-col gap-2",
+  row: "flex flex-1 gap-2",
+};

@@ -93,8 +93,8 @@ export default function RecentStreamsTable({
   });
 
   return (
-    <Card className="w-full">
-      <div className="flex flex-col gap-4 p-4">
+    <Card className={classes.card}>
+      <div className={classes.cardContainer}>
         <CardTitleAndDescription
           title="Recently Streamed Songs"
           description="Most recent streamed songs."
@@ -104,7 +104,7 @@ export default function RecentStreamsTable({
           placeholder="Filter by artist or song name"
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
-          className="md:max-w-sm rounded w-full"
+          className={classes.input}
         />
       </div>
       <Table>
@@ -116,7 +116,7 @@ export default function RecentStreamsTable({
                   key={header.id}
                   className={`${
                     header.id === "dateStreamed" || header.id === "userId"
-                      ? "hidden lg:table-cell"
+                      ? classes.hiddenLgTableCell
                       : ""
                   }`}
                 >
@@ -138,10 +138,10 @@ export default function RecentStreamsTable({
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className={`text-left p-4 ${
+                    className={`${classes.textLeftCell} ${
                       cell.column.id === "dateStreamed" ||
                       cell.column.id === "userId"
-                        ? "hidden lg:table-cell"
+                        ? classes.hiddenLgTableCell
                         : ""
                     }`}
                   >
@@ -159,7 +159,7 @@ export default function RecentStreamsTable({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center text-left"
+                className={classes.noResultsCell}
               >
                 No results.
               </TableCell>
@@ -168,9 +168,9 @@ export default function RecentStreamsTable({
         </TableBody>
       </Table>
 
-      <div className="flex items-center justify-end space-x-2 p-4">
+      <div className={classes.paginationContainer}>
         <Button
-          className="rounded"
+          className={classes.button}
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
@@ -179,7 +179,7 @@ export default function RecentStreamsTable({
           Previous
         </Button>
         <Button
-          className="rounded"
+          className={classes.button}
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
@@ -191,3 +191,14 @@ export default function RecentStreamsTable({
     </Card>
   );
 }
+
+const classes = {
+  card: "w-full md:h-[800px] h-[955px]",
+  cardContainer: "flex flex-col gap-4 p-4",
+  input: "md:max-w-sm rounded w-full",
+  hiddenLgTableCell: "hidden lg:table-cell",
+  textLeftCell: "text-left p-4",
+  noResultsCell: "h-24 text-center",
+  paginationContainer: "flex items-center justify-end space-x-2 p-4",
+  button: "rounded",
+};
