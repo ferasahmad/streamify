@@ -11,9 +11,13 @@ const CardTitleAndDescription: React.FC<CardTitleAndDescriptionProps> = ({
   description,
 }) => (
   <div>
-    <CardTitle className="pb-2 text-2xl md:text-lg">{title}</CardTitle>
+    <CardTitle className={classes.cardTitle}>{title}</CardTitle>
     <CardDescription>{description}</CardDescription>
   </div>
 );
 
 export default CardTitleAndDescription;
+
+const classes = {
+  cardTitle: "pb-2 text-2xl md:text-lg",
+};

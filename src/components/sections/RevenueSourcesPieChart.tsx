@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -57,16 +51,16 @@ export default function RevenueSourcesPieChart({
 
   const renderRevenueItems = () =>
     revenueSources.map((item) => (
-      <div key={item.source} className="flex flex-col">
+      <div key={item.source} className={classes.revenueItemContainer}>
         <span
-          className="text-2xl font-semibold"
+          className={classes.revenueItemValue}
           style={{
             color: chartConfig[item.source as keyof typeof chartConfig].color,
           }}
         >
           {formatNumber(item.amount)}
         </span>
-        <span className="flex-1 pr-1">{item.source}</span>
+        <span className={classes.revenueItemSource}>{item.source}</span>
       </div>
     ));
 
@@ -79,17 +73,13 @@ export default function RevenueSourcesPieChart({
         textAnchor="middle"
         dominantBaseline="middle"
       >
-        <tspan
-          x={viewBox.cx}
-          y={viewBox.cy}
-          className="fill-foreground text-3xl font-bold"
-        >
+        <tspan x={viewBox.cx} y={viewBox.cy} className={classes.pieLabelValue}>
           {formatNumber(totalRevenue)}
         </tspan>
         <tspan
           x={viewBox.cx}
           y={(viewBox.cy || 0) + 24}
-          className="fill-muted-foreground"
+          className={classes.pieLabelSubtitle}
         >
           Revenue
         </tspan>
@@ -98,21 +88,18 @@ export default function RevenueSourcesPieChart({
   };
 
   return (
-    <Card className="flex flex-col h-full">
-      <CardHeader className="pb-2">
+    <Card className={classes.card}>
+      <CardHeader className={classes.cardHeader}>
         <CardTitleAndDescription
           title="Revenue Distribution"
           description="The total revenue generated from subscriptions, advertisements and other sources."
         />
       </CardHeader>
-      <CardContent className="flex flex-row justify-center gap-4">
-        <div className="lg:flex hidden flex-col gap-2 text-sm h-full justify-center">
+      <CardContent className={classes.cardContent}>
+        <div className={classes.revenueItemsContainer}>
           {renderRevenueItems()}
         </div>
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-square w-full xl:w-auto xl:h-[300px] lg:h-[200px] h-[250px]"
-        >
+        <ChartContainer config={chartConfig} className={classes.chartContainer}>
           <PieChart>
             <ChartTooltip
               cursor={false}
@@ -133,3 +120,18 @@ export default function RevenueSourcesPieChart({
     </Card>
   );
 }
+
+const classes = {
+  card: "flex flex-col h-full",
+  cardHeader: "pb-2",
+  cardContent: "flex flex-row justify-center gap-4",
+  revenueItemsContainer:
+    "lg:flex hidden flex-col gap-2 text-sm h-full justify-center",
+  revenueItemContainer: "flex flex-col",
+  revenueItemValue: "text-2xl font-semibold",
+  revenueItemSource: "flex-1 pr-1",
+  chartContainer:
+    "aspect-square w-full xl:w-auto xl:h-[300px] lg:h-[200px] h-[250px]",
+  pieLabelValue: "fill-foreground text-3xl font-bold",
+  pieLabelSubtitle: "fill-muted-foreground",
+};
