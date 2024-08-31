@@ -102,7 +102,7 @@ export default function RevenueSourcesPieChart({
       <CardHeader className="pb-2">
         <CardTitleAndDescription
           title="Revenue Distribution"
-          description="The total revenue generated from subscriptions and advertisements."
+          description="The total revenue generated from subscriptions, advertisements and other sources."
         />
       </CardHeader>
       <CardContent className="flex flex-row items-start gap-4">

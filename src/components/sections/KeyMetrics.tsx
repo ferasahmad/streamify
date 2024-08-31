@@ -29,7 +29,7 @@ export default function KeyMetrics({ metrics }: KeyMetricsProps) {
         />
         <KeyMetric
           value={`$${formatNumber(metrics.totalRevenue)}`}
-          description="Total generated revenue from subscriptions, advertisements and other factors."
+          description="Total generated revenue from subscriptions, advertisements and other sources."
         />
       </div>
     </div>
