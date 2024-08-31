@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/chart";
 import { Song } from "@/types";
 import { formatNumber } from "@/utilities/helpers";
+import CardTitleAndDescription from "../custom/CardTitleAndDescription";
 
 interface TopSongsBarChartProps {
   topSongs: Song[];
@@ -52,10 +53,10 @@ export default function TopSongsBarChart({ topSongs }: TopSongsBarChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Top Songs</CardTitle>
-        <CardDescription>
-          Most streamed songs over the past month.
-        </CardDescription>
+        <CardTitleAndDescription
+          title="Top Songs"
+          description="Most streamed songs over the past month."
+        />
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import CardTitleAndDescription from "../custom/CardTitleAndDescription";
 
 interface TopArtistProps {
   artistImage: string;
@@ -16,9 +17,11 @@ export default function TopArtist({ artistImage, topArtist }: TopArtistProps) {
         className="w-full h-full object-cover rounded-lg"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent rounded-lg" />
-      <div className="absolute bottom-0 text-white p-4">
-        <h3 className="text-xl font-bold">{topArtist}</h3>
-        <p>Top artist this month.</p>
+      <div className="absolute bottom-0 p-4">
+        <CardTitleAndDescription
+          title={topArtist}
+          description="Top artist this month."
+        />
       </div>
     </div>
   );

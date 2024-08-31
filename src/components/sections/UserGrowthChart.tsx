@@ -16,6 +16,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { UserGrowth } from "@/types";
+import CardTitleAndDescription from "../custom/CardTitleAndDescription";
 
 interface UserGrowthChartProps {
   userGrowth: UserGrowth;
@@ -42,8 +43,10 @@ const UserGrowthChart: React.FC<UserGrowthChartProps> = ({ userGrowth }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>User Growth</CardTitle>
-        <CardDescription>User growth trends this year.</CardDescription>
+        <CardTitleAndDescription
+          title="User Growth"
+          description="User growth trends this year."
+        />
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

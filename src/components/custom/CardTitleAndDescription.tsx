@@ -11,7 +11,7 @@ const CardTitleAndDescription: React.FC<CardTitleAndDescriptionProps> = ({
   description,
 }) => (
   <div>
-    <CardTitle>{title}</CardTitle>
+    <CardTitle className="pb-2">{title}</CardTitle>
     <CardDescription>{description}</CardDescription>
   </div>
 );
