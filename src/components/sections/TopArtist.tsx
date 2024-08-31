@@ -10,7 +10,7 @@ interface TopArtistProps {
 
 export default function TopArtist({ artistImage, topArtist }: TopArtistProps) {
   return (
-    <div className="relative w-full h-48 lg:h-full ">
+    <div className="relative w-full h-full">
       <img
         src={artistImage}
         alt="Artist"

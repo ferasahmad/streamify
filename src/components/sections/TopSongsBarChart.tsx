@@ -85,7 +85,7 @@ export default function TopSongsBarChart({ topSongs }: TopSongsBarChartProps) {
                 dataKey="streamCount"
                 position="inside"
                 className="fill-background"
-                fontSize={12}
+                fontSize={14}
                 formatter={formatNumber}
               />
             </Bar>
