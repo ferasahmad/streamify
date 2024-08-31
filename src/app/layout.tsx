@@ -32,7 +32,8 @@ export default function RootLayout({
 }
 
 const classes = {
-  header: "w-full lg:px-20 md:px-10 sm:px-4 px-2 pt-12 flex items-center",
+  header:
+    "w-full lg:px-20 md:px-10 sm:px-4 px-2 md:pt-12 pt-4 flex items-center",
   title: "ml-2 text-3xl text-white font-medium",
   content: "lg:px-20 md:px-10 sm:px-4 px-2 py-12",
 };
