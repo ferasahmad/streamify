@@ -24,7 +24,7 @@ export default function RootLayout({
             />
             <p className="ml-2 text-3xl text-white font-medium">Streamify</p>
           </header>
-          <div className="px-28 pt-12">{children}</div>
+          <div className="px-28 py-12">{children}</div>
         </DataProvider>
       </body>
     </html>
