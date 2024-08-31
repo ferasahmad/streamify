@@ -8,6 +8,7 @@ import RevenueSourcesPieChart from "@/components/sections/RevenueSourcesPieChart
 import TopSongsBarChart from "@/components/sections/TopSongsBarChart";
 import UserGrowthChart from "@/components/sections/UserGrowthChart";
 import RecentStreamsTable from "@/components/sections/RecemtStreamsTable";
+import LoadingSpinner from "@/components/custom/LoadingSpinner";
 
 export default function Home() {
   const {
@@ -31,7 +32,12 @@ export default function Home() {
     }
   }, [errors]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <div className={classes.container}>
