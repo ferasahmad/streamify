@@ -12,19 +12,19 @@ export const topSongs = [
     albumCover: "/albums/once-twice-melody.jpg",
   },
   {
-    songName: "Watching T.V.",
+    songName: "Cry For Me",
     artist: "Magdalena Bay",
     streamCount: 5049,
     albumCover: "/albums/imaginal-disk.jpg",
   },
   {
-    songName: "Save Your Tears",
+    songName: "Faith",
     artist: "The Weeknd",
     streamCount: 12824,
     albumCover: "/albums/after-hours.jpg",
   },
   {
-    songName: "Mariners Apartment Complex ",
+    songName: "The greatest",
     artist: "Lana Del Rey",
     streamCount: 1074,
     albumCover: "/albums/nfr.jpg",
