@@ -7,6 +7,7 @@ import TopArtist from "@/components/sections/TopArtist";
 import RevenueSourcesPieChart from "@/components/sections/RevenueSourcesPieChart";
 import TopSongsBarChart from "@/components/sections/TopSongsBarChart";
 import UserGrowthChart from "@/components/sections/UserGrowthChart";
+import RecentStreamsTable from "@/components/sections/RecemtStreamsTable";
 
 export default function Home() {
   const {
@@ -62,6 +63,9 @@ export default function Home() {
         <div className="lg:flex-1">
           <UserGrowthChart userGrowth={userGrowth} />
         </div>
+      </div>
+      <div className="lg:flex-1">
+        <RecentStreamsTable recentStreams={recentStreams} />
       </div>
     </div>
   );
