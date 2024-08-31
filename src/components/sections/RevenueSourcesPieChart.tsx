@@ -17,6 +17,7 @@ import { RevenueSource } from "@/types";
 import { formatNumber } from "@/utilities/helpers";
 import { useMemo } from "react";
 import { Label, Pie, PieChart } from "recharts";
+import CardTitleAndDescription from "../custom/CardTitleAndDescription";
 
 interface RevenueSourcesProps {
   revenueSources: RevenueSource[];
@@ -99,15 +100,18 @@ export default function RevenueSourcesPieChart({
   return (
     <Card className="flex flex-col h-full">
       <CardHeader className="pb-2">
-        <CardTitle>Revenue Distribution</CardTitle>
+        <CardTitleAndDescription
+          title="Revenue Distribution"
+          description="The total revenue generated from subscriptions, advertisements and other sources."
+        />
       </CardHeader>
-      <CardContent className="flex flex-row items-start gap-4">
-        <div className="flex flex-col gap-2 text-sm h-full justify-center">
+      <CardContent className="flex flex-row justify-center gap-4">
+        <div className="lg:flex hidden flex-col gap-2 text-sm h-full justify-center">
           {renderRevenueItems()}
         </div>
         <ChartContainer
           config={chartConfig}
-          className="aspect-square w-full lg:w-auto h-[300px]"
+          className="aspect-square w-full xl:w-auto xl:h-[300px] lg:h-[200px] h-[250px]"
         >
           <PieChart>
             <ChartTooltip

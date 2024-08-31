@@ -11,23 +11,27 @@ interface KeyMetricsProps {
 
 export default function KeyMetrics({ metrics }: KeyMetricsProps) {
   return (
-    <div className="flex h-full flex-wrap gap-4">
-      <KeyMetric
-        value={formatNumber(metrics.totalUsers)}
-        description="Total Users"
-      />
-      <KeyMetric
-        value={formatNumber(metrics.activeUsers)}
-        description="Active Users"
-      />
-      <KeyMetric
-        value={formatNumber(metrics.totalStreams)}
-        description="Total Streams"
-      />
-      <KeyMetric
-        value={`$${formatNumber(metrics.totalRevenue)}`}
-        description="Total Revenue"
-      />
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex flex-1 gap-2 ">
+        <KeyMetric
+          value={formatNumber(metrics.totalUsers)}
+          description="Total registered users on the platform."
+        />
+        <KeyMetric
+          value={formatNumber(metrics.activeUsers)}
+          description="Users active this month"
+        />
+      </div>
+      <div className="flex flex-1 gap-2">
+        <KeyMetric
+          value={formatNumber(metrics.totalStreams)}
+          description="Total streams on the platform"
+        />
+        <KeyMetric
+          value={`$${formatNumber(metrics.totalRevenue)}`}
+          description="Total generated revenue."
+        />
+      </div>
     </div>
   );
 }

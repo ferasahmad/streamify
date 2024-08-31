@@ -7,7 +7,7 @@ const SortableHeaderCell: React.FC<{
 }> = ({ title, column }) => (
   <Button
     variant="ghost"
-    className="rounded"
+    className="rounded p-0"
     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
     aria-sort={
       column.getIsSorted()

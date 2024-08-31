@@ -16,6 +16,8 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { UserGrowth } from "@/types";
+import CardTitleAndDescription from "../custom/CardTitleAndDescription";
+import { formatNumber } from "@/utilities/helpers";
 
 interface UserGrowthChartProps {
   userGrowth: UserGrowth;
@@ -42,20 +44,15 @@ const UserGrowthChart: React.FC<UserGrowthChartProps> = ({ userGrowth }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>User Growth</CardTitle>
-        <CardDescription>User growth trends this year.</CardDescription>
+        <CardTitleAndDescription
+          title="User Growth"
+          description="User growth trends this year."
+        />
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <LineChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
+          <LineChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} horizontal={true} />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -63,7 +60,7 @@ const UserGrowthChart: React.FC<UserGrowthChartProps> = ({ userGrowth }) => {
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <YAxis />
+            <YAxis tickFormatter={(value) => formatNumber(value)} />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}

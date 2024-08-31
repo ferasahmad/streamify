@@ -20,51 +20,34 @@ export default function Home() {
     error,
   } = useDataContext();
 
-  useEffect(() => {
-    if (!loading && !error) {
-      console.log(recentStreams);
-      console.log(revenueSources);
-      console.log(topSongs);
-      console.log(userGrowth);
-    }
-  }, [
-    loading,
-    error,
-    metrics,
-    recentStreams,
-    revenueSources,
-    topSongs,
-    userGrowth,
-  ]);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="flex flex-wrap justify-center w-full gap-8">
-      <div className="flex gap-8 w-full">
-        <div className="lg:flex-1">
+    <div className="flex flex-wrap justify-center w-full gap-2">
+      <div className="flex md:flex-row flex-col gap-2 w-full">
+        <div className="xl:flex-1 flex-1">
           <KeyMetrics metrics={metrics} />
         </div>
-        <div className="relative lg:flex-1 overflow-hidden">
+        <div className="flex relative xl:flex-1 flex-1 overflow-hidden">
           <TopArtist
             artistImage={metrics.artistImage}
             topArtist={metrics.topArtist}
           />
         </div>
-        <div className="lg:flex-1">
+        <div className="xl:flex-1 w-full flex-1">
           <RevenueSourcesPieChart revenueSources={revenueSources} />
         </div>
       </div>
-      <div className="flex gap-8 w-full">
-        <div className="lg:flex-1">
+      <div className="flex md:flex-row flex-col gap-2 w-full">
+        <div className="flex-1">
           <TopSongsBarChart topSongs={topSongs} />
         </div>
-        <div className="lg:flex-1">
+        <div className="flex-1">
           <UserGrowthChart userGrowth={userGrowth} />
         </div>
       </div>
-      <div className="lg:flex-1">
+      <div className="flex-1">
         <RecentStreamsTable recentStreams={recentStreams} />
       </div>
     </div>

@@ -1,15 +1,15 @@
 export const revenueSources = [
   {
     source: "Subscriptions",
-    amount: 129833,
+    amount: 350000,
   },
   {
     source: "Advertisements",
-    amount: 25323,
+    amount: 100000,
   },
   {
     source: "Other",
-    amount: 14289,
+    amount: 45000,
   },
 ];
 

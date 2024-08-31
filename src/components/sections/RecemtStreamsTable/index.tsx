@@ -50,15 +50,13 @@ export default function RecentStreamsTable({
     () => [
       {
         accessorKey: "songName",
-        header: ({ column }) => (
-          <SortableHeaderCell title="Song Name" column={column} />
-        ),
+        header: "Song Name",
+        enableSorting: false,
       },
       {
         accessorKey: "artist",
-        header: ({ column }) => (
-          <SortableHeaderCell title="Artist" column={column} />
-        ),
+        header: "Artist",
+        enableSorting: false,
       },
       {
         accessorKey: "dateStreamed",
@@ -77,9 +75,8 @@ export default function RecentStreamsTable({
       },
       {
         accessorKey: "userId",
-        header: ({ column }) => (
-          <SortableHeaderCell title="User ID" column={column} />
-        ),
+        header: "User ID",
+        enableSorting: false,
       },
     ],
     []
@@ -107,7 +104,7 @@ export default function RecentStreamsTable({
           placeholder="Filter by artist or song name"
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
-          className="max-w-sm rounded"
+          className="md:max-w-sm rounded w-full"
         />
       </div>
       <Table>
@@ -115,7 +112,14 @@ export default function RecentStreamsTable({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead
+                  key={header.id}
+                  className={`${
+                    header.id === "dateStreamed" || header.id === "userId"
+                      ? "hidden lg:table-cell"
+                      : ""
+                  }`}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -132,8 +136,16 @@ export default function RecentStreamsTable({
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="text-left">
-                    <div className="ml-4">
+                  <TableCell
+                    key={cell.id}
+                    className={`text-left p-4 ${
+                      cell.column.id === "dateStreamed" ||
+                      cell.column.id === "userId"
+                        ? "hidden lg:table-cell"
+                        : ""
+                    }`}
+                  >
+                    <div className="ml-0">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
