@@ -6,6 +6,7 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useCallback,
 } from "react";
 
 interface DataContextType {
@@ -15,7 +16,7 @@ interface DataContextType {
   topSongs: any;
   userGrowth: any;
   loading: boolean;
-  error: string | null;
+  errors: Record<string, string | null>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -24,7 +25,13 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string | null>>({
+    metrics: null,
+    recentStreams: null,
+    revenueSources: null,
+    topSongs: null,
+    userGrowth: null,
+  });
   const [data, setData] = useState({
     metrics: null,
     recentStreams: null,
@@ -33,39 +40,57 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
     userGrowth: null,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const [metrics, recentStreams, revenueSources, topSongs, userGrowth] =
-          await Promise.all([
-            fetch("/api/metrics").then((res) => res.json()),
-            fetch("/api/recent-streams").then((res) => res.json()),
-            fetch("/api/revenue-sources").then((res) => res.json()),
-            fetch("/api/top-songs").then((res) => res.json()),
-            fetch("/api/user-growth").then((res) => res.json()),
-          ]);
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setErrors({
+      metrics: null,
+      recentStreams: null,
+      revenueSources: null,
+      topSongs: null,
+      userGrowth: null,
+    });
 
-        setData({
-          metrics,
-          recentStreams,
-          revenueSources,
-          topSongs,
-          userGrowth,
-        });
+    const fetchWithCatch = async (url: string, key: string) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to fetch ${url}`);
+        return await response.json();
       } catch (err: any) {
-        setError(err.message || "Failed to fetch data");
-      } finally {
-        setLoading(false);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          [key]: err.message || "Failed to fetch data",
+        }));
+        console.error(err);
+        return null;
       }
     };
 
-    fetchData();
+    const [metrics, recentStreams, revenueSources, topSongs, userGrowth] =
+      await Promise.all([
+        fetchWithCatch("/api/metrics", "metrics"),
+        fetchWithCatch("/api/recent-streams", "recentStreams"),
+        fetchWithCatch("/api/revenue-sources", "revenueSources"),
+        fetchWithCatch("/api/top-songs", "topSongs"),
+        fetchWithCatch("/api/user-growth", "userGrowth"),
+      ]);
+
+    setData({
+      metrics,
+      recentStreams,
+      revenueSources,
+      topSongs,
+      userGrowth,
+    });
+
+    setLoading(false);
   }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
-    <DataContext.Provider value={{ ...data, loading, error }}>
+    <DataContext.Provider value={{ ...data, loading, errors }}>
       {children}
     </DataContext.Provider>
   );

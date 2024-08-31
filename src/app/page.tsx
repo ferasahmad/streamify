@@ -17,38 +17,54 @@ export default function Home() {
     topSongs,
     userGrowth,
     loading,
-    error,
+    errors,
   } = useDataContext();
 
+  useEffect(() => {
+    const errorMessages = Object.entries(errors)
+      .filter(([, error]) => error)
+      .map(([key, error]) => `Error loading ${key}: ${error}`)
+      .join("\n");
+
+    if (errorMessages) {
+      alert(errorMessages);
+    }
+  }, [errors]);
+
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className={classes.container}>
       <div className={classes.row}>
         <div className={classes.flexItem}>
-          <KeyMetrics metrics={metrics} />
+          {!errors.metrics && <KeyMetrics metrics={metrics} />}
         </div>
         <div className={classes.topArtistContainer}>
-          <TopArtist
-            artistImage={metrics.artistImage}
-            topArtist={metrics.topArtist}
-          />
+          {!errors.metrics && (
+            <TopArtist
+              artistImage={metrics.artistImage}
+              topArtist={metrics.topArtist}
+            />
+          )}
         </div>
         <div className={classes.revenueSourcesContainer}>
-          <RevenueSourcesPieChart revenueSources={revenueSources} />
+          {!errors.revenueSources && (
+            <RevenueSourcesPieChart revenueSources={revenueSources} />
+          )}
         </div>
       </div>
       <div className={classes.row}>
         <div className={classes.flexItem}>
-          <TopSongsBarChart topSongs={topSongs} />
+          {!errors.topSongs && <TopSongsBarChart topSongs={topSongs} />}
         </div>
         <div className={classes.flexItem}>
-          <UserGrowthChart userGrowth={userGrowth} />
+          {!errors.userGrowth && <UserGrowthChart userGrowth={userGrowth} />}
         </div>
       </div>
       <div className={classes.flexItem}>
-        <RecentStreamsTable recentStreams={recentStreams} />
+        {!errors.recentStreams && (
+          <RecentStreamsTable recentStreams={recentStreams} />
+        )}
       </div>
     </div>
   );
