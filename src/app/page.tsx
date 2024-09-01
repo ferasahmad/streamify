@@ -77,8 +77,8 @@ export default function Home() {
 }
 
 const classes = {
-  container: "flex flex-wrap justify-center w-full gap-2",
-  row: "flex md:flex-row flex-col gap-2 w-full",
+  container: "flex flex-wrap justify-center w-full gap-2 md:gap-4",
+  row: "flex md:flex-row flex-col gap-2 md:gap-4 w-full",
   flexItem: "flex-1",
   topArtistContainer: "flex relative xl:flex-1 flex-1 overflow-hidden",
   revenueSourcesContainer: "xl:flex-1 w-full flex-1",

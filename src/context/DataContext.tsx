@@ -1,5 +1,6 @@
 "use client";
 
+import { Metrics, RevenueSource, Song, Stream, UserGrowth } from "@/types";
 import React, {
   createContext,
   useContext,
@@ -8,13 +9,14 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
+import { fetchWithCatch } from "@/utilities/fetchWithCatch";
 
 interface DataContextType {
-  metrics: any;
-  recentStreams: any;
-  revenueSources: any;
-  topSongs: any;
-  userGrowth: any;
+  metrics: Metrics;
+  recentStreams: Stream[];
+  revenueSources: RevenueSource[];
+  topSongs: Song[];
+  userGrowth: UserGrowth;
   loading: boolean;
   errors: Record<string, string | null>;
 }
@@ -32,12 +34,21 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
     topSongs: null,
     userGrowth: null,
   });
-  const [data, setData] = useState({
-    metrics: null,
-    recentStreams: null,
-    revenueSources: null,
-    topSongs: null,
-    userGrowth: null,
+
+  const [data, setData] = useState<DataContextType>({
+    metrics: {} as Metrics,
+    recentStreams: [],
+    revenueSources: [],
+    topSongs: [],
+    userGrowth: {} as UserGrowth,
+    loading: true,
+    errors: {
+      metrics: null,
+      recentStreams: null,
+      revenueSources: null,
+      topSongs: null,
+      userGrowth: null,
+    },
   });
 
   const fetchData = useCallback(async () => {
@@ -50,37 +61,23 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       userGrowth: null,
     });
 
-    const fetchWithCatch = async (url: string, key: string) => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`Failed to fetch ${url}`);
-        return await response.json();
-      } catch (err: any) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          [key]: err.message || "Failed to fetch data",
-        }));
-        console.error(err);
-        return null;
-      }
-    };
-
     const [metrics, recentStreams, revenueSources, topSongs, userGrowth] =
       await Promise.all([
-        fetchWithCatch("/api/metrics", "metrics"),
-        fetchWithCatch("/api/recent-streams", "recentStreams"),
-        fetchWithCatch("/api/revenue-sources", "revenueSources"),
-        fetchWithCatch("/api/top-songs", "topSongs"),
-        fetchWithCatch("/api/user-growth", "userGrowth"),
+        fetchWithCatch("/api/metrics", "metrics", setErrors),
+        fetchWithCatch("/api/recent-streams", "recentStreams", setErrors),
+        fetchWithCatch("/api/revenue-sources", "revenueSources", setErrors),
+        fetchWithCatch("/api/top-songs", "topSongs", setErrors),
+        fetchWithCatch("/api/user-growth", "userGrowth", setErrors),
       ]);
 
-    setData({
+    setData((prevData) => ({
+      ...prevData,
       metrics,
       recentStreams,
       revenueSources,
       topSongs,
       userGrowth,
-    });
+    }));
 
     setLoading(false);
   }, []);

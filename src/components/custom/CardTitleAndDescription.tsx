@@ -19,5 +19,5 @@ const CardTitleAndDescription: React.FC<CardTitleAndDescriptionProps> = ({
 export default CardTitleAndDescription;
 
 const classes = {
-  cardTitle: "pb-2 text-2xl md:text-lg",
+  cardTitle: "pb-2 text-lg md:text-2xl",
 };
