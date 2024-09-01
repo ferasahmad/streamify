@@ -7,7 +7,7 @@ import TopArtist from "@/components/sections/TopArtist";
 import RevenueSourcesPieChart from "@/components/sections/RevenueSourcesPieChart";
 import TopSongsBarChart from "@/components/sections/TopSongsBarChart";
 import UserGrowthChart from "@/components/sections/UserGrowthChart";
-import RecentStreamsTable from "@/components/sections/RecemtStreamsTable";
+import RecentStreamsTable from "@/components/sections/RecentStreamsTable";
 import LoadingSpinner from "@/components/custom/LoadingSpinner";
 
 export default function Home() {
