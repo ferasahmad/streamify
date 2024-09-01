@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites 
+Make sure you have the following installed on your machine: 
+* **Node.js** (v18 or higher): [Download Node.js](https://nodejs.org/) 
+* **npm** (Node Package Manager)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation 
+1. **Clone the Repository:** Open your terminal and run the following command to clone the repository: `git clone https://github.com/ferasahmad/streamify.git`
+2. **Navigate to the Project Directory:** `cd streamify` 
+3. **Install Dependencies:** Install all the necessary dependencies using your preferred package manager: `npm install`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Running the Development Server 
+After installing the dependencies, start the development server with one of the following commands: bash Copy code `npm run dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies Used
+* **Next.js (v14.2.7)**: A React framework for building fast and scalable web applications with features like server-side rendering, static site generation, and API routes.
+* **ShadCN UI**: A collection of accessible, customizable UI components built using Radix UI and styled with Tailwind CSS.
+* **TypeScript**: A statically typed language that extends JavaScript, providing enhanced tooling, type safety, and scalability for large applications.
+* **Tailwind CSS**: A utility-first CSS framework for quickly building custom designs using predefined classes.
+* **Recharts**: A charting library for React, used to create interactive data visualizations.
+* **TanStack Table**: A powerful and flexible library for building customizable data tables in React applications.
 
-## Learn More
+## Demo
 
-To learn more about Next.js, take a look at the following resources:
+https://www.loom.com/share/b004848ddfd044668d8fbd9b6216f031?sid=4f5b15f0-9de2-432e-86fc-d7b4aadfbae6
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Screenshots
+![screencapture-localhost-3000-2024-08-31-16_19_03](https://github.com/user-attachments/assets/ce694ba3-d77b-4929-a752-0834fcf7a11b)
