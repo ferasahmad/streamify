@@ -1,10 +1,16 @@
-"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import { DataProvider } from "@/context/DataContext";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Streamify - Analytics",
+  description:
+    "Streamify - A comprehensive dashboard for analyzing Streamify's music streams, top songs, revenue, and user growth.",
+};
 
 export default function RootLayout({
   children,
