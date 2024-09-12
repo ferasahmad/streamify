@@ -27,9 +27,5 @@ After installing the dependencies, start the development server with one of the 
 * **Recharts**: A charting library for React, used to create interactive data visualizations.
 * **TanStack Table**: A powerful and flexible library for building customizable data tables in React applications.
 
-## Demo
-
-https://www.loom.com/share/b004848ddfd044668d8fbd9b6216f031?sid=4f5b15f0-9de2-432e-86fc-d7b4aadfbae6
-
 ## Screenshots
 ![screencapture-localhost-3000-2024-08-31-16_19_03](https://github.com/user-attachments/assets/ce694ba3-d77b-4929-a752-0834fcf7a11b)
